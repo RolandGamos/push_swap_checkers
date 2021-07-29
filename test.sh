@@ -5,10 +5,9 @@ AVERAGE=0
 MIN=2147483647
 MAX=-2147483648
 
-if [[ $# == 3 ]] && [[ $1 =~ ^[+-]?[0-9]+$ ]] && [[ $2 =~ ^[+-]?[0-9]+$ ]] && [[ "$3" -eq "linux" ]] || [[ "$3" -eq "Mac" ]]
- 
+if [[ $# == 2 ]] && [[ $1 =~ ^[+-]?[0-9]+$ ]]
 then
-      for i in {1..$2}
+      for i in {1..5}
       do
       ARG=`ruby -e "puts (1..$1).to_a.shuffle.join(' ')"`
          OUTPUT=$(./push_swap $ARG | wc -l)
@@ -24,7 +23,7 @@ then
       fi
       ((SOMME+=OUTPUT))
       done
-   ((AVERAGE=SOMME/5))
+   ((AVERAGE=SOMME/$1))
    echo "Average $AVERAGE"
    echo "min $MIN"
    echo "max $MAX"
